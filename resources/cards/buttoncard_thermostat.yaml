@@ -25,10 +25,10 @@ styles:
     - grid-template-rows: min-content min-content auto
   name:
     - justify-self: start
-    - font-size: 13px
+    - font-size: 14px
   state:
     - justify-self: start
-    - font-size: 13px
+    - font-size: 14px
   custom_fields:
     temp:
       - align-self: start
