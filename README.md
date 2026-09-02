@@ -1,12 +1,12 @@
 # Vimar KNX Climate
 
-[![Validate](https://github.com/tempod/vimar-knx-climate/actions/workflows/validate.yml/badge.svg)](https://github.com/tempod/vimar-knx-climate/actions/workflows/validate.yml)
-[![Release](https://img.shields.io/github/v/release/tempod/vimar-knx-climate?style=flat-square)](https://github.com/tempod/vimar-knx-climate/releases)
+[![Validate](https://github.com/tempod/vimar-knx-climate-home-assistant/actions/workflows/validate.yml/badge.svg)](https://github.com/tempod/vimar-knx-climate-home-assistant/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
 [![HACS](https://img.shields.io/badge/HACS-repository%20personalizzato-41BDF5?style=flat-square&logo=homeassistantcommunitystore&logoColor=white)](https://hacs.xyz)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.11%2B-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io)
-[![Download](https://img.shields.io/github/downloads/tempod/vimar-knx-climate/total?style=flat-square)](https://github.com/tempod/vimar-knx-climate/releases)
-[![Licenza](https://img.shields.io/github/license/tempod/vimar-knx-climate?style=flat-square)](LICENSE)
-[![Issue](https://img.shields.io/github/issues/tempod/vimar-knx-climate?style=flat-square)](https://github.com/tempod/vimar-knx-climate/issues)
+[![Download](https://img.shields.io/github/downloads/tempod/vimar-knx-climate-home-assistant/total?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
+[![Licenza](https://img.shields.io/github/license/tempod/vimar-knx-climate-home-assistant?style=flat-square)](LICENSE)
+[![Issue](https://img.shields.io/github/issues/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/issues)
 
 Integrazione personalizzata per Home Assistant che crea una vera entità `climate`
 a partire dagli indirizzi di gruppo e dai payload non standard dei termostati
@@ -56,7 +56,7 @@ rigenerare le immagini.
 ## Installazione via HACS
 
 1. HACS → menu in alto a destra → **Custom repositories**
-2. `https://github.com/tempod/vimar-knx-climate`, categoria **Integration**
+2. `https://github.com/tempod/vimar-knx-climate-home-assistant`, categoria **Integration**
 3. Cerca "Vimar KNX Climate", installa, riavvia Home Assistant
 4. **Impostazioni → Dispositivi e servizi → Aggiungi integrazione → Vimar KNX Climate**
 

@@ -52,4 +52,4 @@ l'integrazione KNX già configurata.
 - `hvac_action` non è esposto: richiederebbe un indirizzo di gruppo di stato
   del relè o della valvola.
 
-[1.0.0]: https://github.com/tempod/vimar-knx-climate/releases/tag/v1.0.0
+[1.0.0]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.0
