@@ -1,5 +1,13 @@
 # Vimar KNX Climate
 
+[![Validate](https://github.com/tempod/vimar-knx-climate/actions/workflows/validate.yml/badge.svg)](https://github.com/tempod/vimar-knx-climate/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/tempod/vimar-knx-climate?style=flat-square)](https://github.com/tempod/vimar-knx-climate/releases)
+[![HACS](https://img.shields.io/badge/HACS-repository%20personalizzato-41BDF5?style=flat-square&logo=homeassistantcommunitystore&logoColor=white)](https://hacs.xyz)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.11%2B-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io)
+[![Download](https://img.shields.io/github/downloads/tempod/vimar-knx-climate/total?style=flat-square)](https://github.com/tempod/vimar-knx-climate/releases)
+[![Licenza](https://img.shields.io/github/license/tempod/vimar-knx-climate?style=flat-square)](LICENSE)
+[![Issue](https://img.shields.io/github/issues/tempod/vimar-knx-climate?style=flat-square)](https://github.com/tempod/vimar-knx-climate/issues)
+
 Integrazione personalizzata per Home Assistant che crea una vera entità `climate`
 a partire dagli indirizzi di gruppo e dai payload non standard dei termostati
 Vimar su bus KNX.
@@ -32,12 +40,13 @@ Nessun secondo tunnel verso il gateway, nessuna dipendenza da API interne.
 ## Struttura del repository
 
 ```
+CHANGELOG.md                           modifiche di ogni versione
 custom_components/vimar_knx_climate/   il componente vero e proprio
   brand/                               icone e logo, chiaro e scuro
   translations/                        italiano e inglese
 resources/
   icons/                               sorgenti SVG e script di generazione
-  cards/                               configurazioni Lovelace di esempio
+  cards/                               configurazioni Lovelace e schermata
 ```
 
 Solo `custom_components/` viene installato da HACS. `resources/` è materiale
@@ -47,7 +56,7 @@ rigenerare le immagini.
 ## Installazione via HACS
 
 1. HACS → menu in alto a destra → **Custom repositories**
-2. URL del repository, categoria **Integration**
+2. `https://github.com/tempod/vimar-knx-climate`, categoria **Integration**
 3. Cerca "Vimar KNX Climate", installa, riavvia Home Assistant
 4. **Impostazioni → Dispositivi e servizi → Aggiungi integrazione → Vimar KNX Climate**
 
@@ -271,6 +280,12 @@ alla prima lettura sul bus, e non nasconde più i comandi.
 
 ## Card di esempio
 
+![Le tre card a confronto](resources/cards/tipi_card.jpg)
+
+Da sinistra: la card termostato integrata di Home Assistant, che funziona
+senza aggiungere nulla; Simple Thermostat con nomi e icone personalizzati;
+button-card nella versione compatta.
+
 In `resources/cards/` ci sono tre configurazioni Lovelace pronte, che coprono
 lo stesso termostato in tre modi diversi. Non sono necessarie per usare
 l'integrazione: l'entità climate funziona con la card termostato integrata di
@@ -413,6 +428,10 @@ derivano da alcun marchio figurativo di terzi.
   espone, si può aggiungere.
 - I payload sono definiti in `knx.yaml`, non qui: questa integrazione non parla
   direttamente con il bus.
+
+## Changelog
+
+Le modifiche di ogni versione sono in [CHANGELOG.md](CHANGELOG.md).
 
 ## Licenza
 
