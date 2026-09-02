@@ -4,6 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
 [![HACS](https://img.shields.io/badge/HACS-repository%20personalizzato-41BDF5?style=flat-square&logo=homeassistantcommunitystore&logoColor=white)](https://hacs.xyz)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.11%2B-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io)
+[![Download](https://img.shields.io/github/downloads/tempod/vimar-knx-climate-home-assistant/total?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
 [![Licenza](https://img.shields.io/github/license/tempod/vimar-knx-climate-home-assistant?style=flat-square)](LICENSE)
 [![Issue](https://img.shields.io/github/issues/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/issues)
 
@@ -108,7 +109,7 @@ select:
     sync_state: true
     payload_length: 1
     options:
-      - { option: "Condizionamento", payload: 1 }
+      - { option: "Raffrescamento", payload: 1 }
       - { option: "Riscaldamento", payload: 2 }
 
   - name: "Termostato Studio - Ventola knx"
@@ -162,14 +163,14 @@ number:
 |---|---|
 | `hvac_mode: off` | Modalità = `OFF` |
 | `hvac_mode: heat` | Stagione = `Riscaldamento` (+ modalità ≠ OFF) |
-| `hvac_mode: cool` | Stagione = `Condizionamento` (+ modalità ≠ OFF) |
+| `hvac_mode: cool` | Stagione = `Raffrescamento` (+ modalità ≠ OFF) |
 | `preset_mode` | Modalità: `Automatico`, `Manuale`, `A Tempo` |
 | `fan_mode` | Select ventola (`low` / `med` / `high`) |
 | `current_temperature` | Sensore sonda |
 | `target_temperature` | Setpoint attivo (vedi sotto) |
 
 Il setpoint attivo viene scelto così: in modalità `Automatico` si usa
-"Temp Auto"; altrimenti "Temp Estate" se la stagione è Condizionamento,
+"Temp Auto"; altrimenti "Temp Estate" se la stagione è Raffrescamento,
 "Temp Inverno" se è Riscaldamento. Anche `min`, `max` e `step` seguono
 l'entità number attiva, quindi lo slider cambia scala insieme alla stagione.
 
@@ -298,7 +299,7 @@ Home Assistant senza aggiungere nulla.
 
 Tutti si installano da **HACS → Frontend**. `card-mod` serve solo per il
 colore della stagione in Simple Thermostat: senza, la card funziona lo stesso
-ma i pulsanti Condizionamento e Riscaldamento restano neutri.
+ma i pulsanti Raffrescamento e Riscaldamento restano neutri.
 
 ### Perché le personalizzazioni sono quasi tutte CSS
 
@@ -313,7 +314,7 @@ proprio shadow DOM, quindi la maggior parte degli interventi non ha bisogno di
 
 - rendere non cliccabili titolo e valore del setpoint, così premere sulla card
   non apre il termostato integrato;
-- rendere Condizionamento e Riscaldamento soli indicatori, non selezionabili,
+- rendere Raffrescamento e Riscaldamento soli indicatori, non selezionabili,
   per gli impianti in cui la stagione è commutata da una centrale;
 - uniformare altezza dei pulsanti e scala delle icone sulle tre righe.
 
@@ -337,7 +338,7 @@ Automatico → Manuale → Spento, attraversando due servizi diversi
 ### Il colore della stagione
 
 Entrambe le card colorano di arancione Riscaldamento e di azzurro
-Condizionamento, e devono farlo anche a termostato spento. Non possono però
+Raffrescamento, e devono farlo anche a termostato spento. Non possono però
 leggerlo da `hvac_mode`, che da spento vale `off` e non porta più
 l'informazione.
 

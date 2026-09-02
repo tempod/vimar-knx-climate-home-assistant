@@ -15,7 +15,7 @@ state_display: |
       set_temp_display = `Impostata ${states['number.termostato_cucina_temp_auto_knx'].state}°C`;
     } else {
       const season = states['select.termostato_cucina_stagione_knx'].state;
-      if (season == 'Condizionamento') {
+      if (season == 'Raffrescamento') {
         set_temp_display = `Impostata ${states['number.termostato_cucina_temp_estate_knx'].state}°C`;
       } else if (season == 'Riscaldamento') {
         set_temp_display = `Impostata ${states['number.termostato_cucina_temp_inverno_knx'].state}°C`;
@@ -74,7 +74,7 @@ custom_fields:
                   if (mode == 'Automatico' || mode == 'A Tempo') {
                     return 'number.termostato_cucina_temp_auto_knx';
                   } else {
-                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Raffrescamento') {
                       return 'number.termostato_cucina_temp_estate_knx';
                     } else {
                       return 'number.termostato_cucina_temp_inverno_knx';
@@ -88,7 +88,7 @@ custom_fields:
                   if (mode == 'Automatico' || mode == 'A Tempo') {
                     entity_id = 'number.termostato_cucina_temp_auto_knx';
                   } else {
-                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Raffrescamento') {
                       entity_id = 'number.termostato_cucina_temp_estate_knx';
                     } else {
                       entity_id = 'number.termostato_cucina_temp_inverno_knx';
@@ -112,7 +112,7 @@ custom_fields:
                   if (mode == 'Automatico' || mode == 'A Tempo') {
                     return 'number.termostato_cucina_temp_auto_knx';
                   } else {
-                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Raffrescamento') {
                       return 'number.termostato_cucina_temp_estate_knx';
                     } else {
                       return 'number.termostato_cucina_temp_inverno_knx';
@@ -126,7 +126,7 @@ custom_fields:
                   if (mode == 'Automatico' || mode == 'A Tempo') {
                     entity_id = 'number.termostato_cucina_temp_auto_knx';
                   } else {
-                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Raffrescamento') {
                       entity_id = 'number.termostato_cucina_temp_estate_knx';
                     } else {
                       entity_id = 'number.termostato_cucina_temp_inverno_knx';
@@ -178,7 +178,7 @@ custom_fields:
           show_icon: true
           show_name: false
           state:
-            - value: Condizionamento
+            - value: Raffrescamento
               icon: mdi:snowflake
               styles:
                 icon:

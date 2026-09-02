@@ -28,7 +28,10 @@ l'integrazione KNX già configurata.
   anche le forme abbreviate, italiane e numeriche. Sul bus viene comunque
   scritta l'opzione originale di `knx.yaml`.
 - Etichette delle opzioni dei select configurabili, per adattarsi a
-  installazioni che usano nomi diversi da quelli predefiniti.
+  installazioni che usano nomi diversi da quelli predefiniti. I valori
+  predefiniti sono `OFF`, `Automatico`, `Manuale`, `A Tempo`,
+  `Raffrescamento` e `Riscaldamento`, e devono corrispondere a quelli
+  scritti in `knx.yaml`.
 - Attributi `vimar_modalita`, `vimar_stagione` e `setpoint_attivo`, utili per
   automazioni e per le card: `vimar_stagione` resta leggibile anche a
   termostato spento, quando `hvac_mode` vale `off`.

@@ -136,7 +136,7 @@ custom_fields:
           show_name: false
           icon: |
             [[[
-              return entity.attributes.vimar_stagione === 'Condizionamento'
+              return entity.attributes.vimar_stagione === 'Raffrescamento'
                 ? 'mdi:snowflake' : 'mdi:fire';
             ]]]
           styles:
@@ -146,7 +146,7 @@ custom_fields:
             icon:
               - color: |
                   [[[
-                    return entity.attributes.vimar_stagione === 'Condizionamento'
+                    return entity.attributes.vimar_stagione === 'Raffrescamento'
                       ? '#2196f3' : '#ff6f22';
                   ]]]
           tap_action:

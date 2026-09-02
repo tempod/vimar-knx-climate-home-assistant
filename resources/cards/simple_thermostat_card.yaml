@@ -17,7 +17,7 @@ control:
       name: Spento
       icon: mdi:power
     cool:
-      name: Condizionamento
+      name: Raffrescamento
       icon: mdi:snowflake
     heat:
       name: Riscaldamento
@@ -87,7 +87,7 @@ hide:
 card_mod:
   style: |
     {% set stagione = state_attr(config.entity, 'vimar_stagione') %}
-    {% set estate = stagione == 'Condizionamento' %}
+    {% set estate = stagione == 'Raffrescamento' %}
     {% set voce = 'cool' if estate else 'heat' %}
     {% set colore = '#2196f3' if estate else '#ff6f22' %}
     .modes.hvac .mode-item.{{ voce }},

@@ -27,7 +27,7 @@ DEFAULT_OPT_OFF = "OFF"
 DEFAULT_OPT_AUTO = "Automatico"
 DEFAULT_OPT_MANUAL = "Manuale"
 DEFAULT_OPT_TIMED = "A Tempo"
-DEFAULT_OPT_COOLING = "Condizionamento"
+DEFAULT_OPT_COOLING = "Raffrescamento"
 DEFAULT_OPT_HEATING = "Riscaldamento"
 
 DEFAULT_NAME = "Termostato Vimar"
