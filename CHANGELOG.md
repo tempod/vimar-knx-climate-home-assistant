@@ -3,6 +3,30 @@
 Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il
 versionamento segue [SemVer](https://semver.org/lang/it/).
 
+## [1.0.1] - 2026-09-02
+
+### Modificato
+
+- L'etichetta predefinita della stagione di raffreddamento passa da
+  `Condizionamento` a `Raffrescamento`, termine più corretto per un impianto
+  di termoregolazione. Allineate anche le traduzioni italiane, gli esempi del
+  README e le tre card in `resources/cards/`.
+
+### Aggiornamento da 1.0.0
+
+Le installazioni esistenti non cambiano comportamento: l'etichetta è
+memorizzata nella voce di configurazione e continua a essere quella scelta
+al momento dell'installazione. Per adottare il nuovo termine servono due
+passaggi, in quest'ordine:
+
+1. cambiare l'opzione in `knx.yaml` e ricaricare l'integrazione KNX;
+2. aprire **Configura** sull'integrazione e aggiornare il campo
+   "Etichetta opzione Raffrescamento".
+
+L'etichetta deve sempre corrispondere all'opzione dichiarata in `knx.yaml`:
+se le due divergono, il comando di commutazione stagione viene scartato e
+registrato come warning nel log.
+
 ## [1.0.0] - 2026-09-02
 
 Prima release pubblica. Richiede Home Assistant 2024.11 o superiore e
@@ -28,10 +52,8 @@ l'integrazione KNX già configurata.
   anche le forme abbreviate, italiane e numeriche. Sul bus viene comunque
   scritta l'opzione originale di `knx.yaml`.
 - Etichette delle opzioni dei select configurabili, per adattarsi a
-  installazioni che usano nomi diversi da quelli predefiniti. I valori
-  predefiniti sono `OFF`, `Automatico`, `Manuale`, `A Tempo`,
-  `Raffrescamento` e `Riscaldamento`, e devono corrispondere a quelli
-  scritti in `knx.yaml`.
+  installazioni che usano nomi diversi da quelli predefiniti. Devono
+  corrispondere a quelli scritti in `knx.yaml`.
 - Attributi `vimar_modalita`, `vimar_stagione` e `setpoint_attivo`, utili per
   automazioni e per le card: `vimar_stagione` resta leggibile anche a
   termostato spento, quando `hvac_mode` vale `off`.
@@ -55,4 +77,5 @@ l'integrazione KNX già configurata.
 - `hvac_action` non è esposto: richiederebbe un indirizzo di gruppo di stato
   del relè o della valvola.
 
+[1.0.1]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.1
 [1.0.0]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.0
