@@ -3,10 +3,10 @@
   "name": "Vimar KNX Climate",
   "codeowners": ["@tempod"],
   "config_flow": true,
-  "documentation": "https://github.com/tempod/vimar-knx-climate",
+  "documentation": "https://github.com/tempod/vimar-knx-climate-home-assistant",
   "integration_type": "device",
   "iot_class": "local_push",
-  "issue_tracker": "https://github.com/tempod/vimar-knx-climate/issues",
+  "issue_tracker": "https://github.com/tempod/vimar-knx-climate-home-assistant/issues",
   "requirements": [],
   "version": "1.0.0"
 }
