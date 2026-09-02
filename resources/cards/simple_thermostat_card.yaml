@@ -1,7 +1,7 @@
 type: custom:simple-thermostat
 entity: climate.termostato_vimar
 step_size: 0.5
-current_value_entity: sensor.termostato_studio_temp_attuale_knx
+current_value_entity: sensor.termostato_vimar_temp_attuale_knx
 layout:
   mode:
     names: true
@@ -61,6 +61,13 @@ styles: |
     cursor: default;
   }
 
+  ha-card header {
+    --st-font-size-title: 20px;
+    --st-header-icon-size: 20px;
+    padding-top: 8px;
+    padding-bottom: 0;
+  }
+  
   .modes.hvac .mode-item.cool,
   .modes.hvac .mode-item.heat {
     pointer-events: none;
