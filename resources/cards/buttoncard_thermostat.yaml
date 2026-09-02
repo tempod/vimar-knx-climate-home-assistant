@@ -1,0 +1,213 @@
+type: custom:button-card
+entity: climate.termostato_vimar
+name: Termostato Vimar
+show_state: true
+color: auto
+tap_action:
+  action: none
+hold_action:
+  action: more-info
+  entity: sensor.termostato_studio_temp_attuale_knx
+state_display: |
+  [[[
+    const c = states['climate.termostato_vimar'];
+    if (c.state === 'off') return 'OFF';
+    const nomi = { home: 'Automatico', comfort: 'Manuale', boost: 'A Tempo' };
+    const profilo = nomi[c.attributes.preset_mode] || c.attributes.preset_mode;
+    return `${profilo} | Impostata ${c.attributes.temperature}°C`;
+  ]]]
+styles:
+  card:
+    - padding: 10px
+  grid:
+    - grid-template-areas: '"i n temp" "i s controls" "buttons buttons buttons"'
+    - grid-template-columns: 0.5fr 2fr 1.0fr
+    - grid-template-rows: min-content min-content auto
+  name:
+    - justify-self: start
+    - font-size: 13px
+  state:
+    - justify-self: start
+    - font-size: 13px
+  custom_fields:
+    temp:
+      - align-self: start
+      - justify-self: end
+      - font-size: 20px
+    controls:
+      - align-self: center
+      - justify-self: end
+      - display: flex
+    buttons:
+      - padding-top: 10px
+custom_fields:
+  temp: |
+    [[[
+      return `${states['climate.termostato_vimar'].attributes.current_temperature}°C`;
+    ]]]
+  controls:
+    card:
+      type: horizontal-stack
+      cards:
+        - type: custom:button-card
+          icon: mdi:minus
+          styles:
+            card:
+              - box-shadow: none
+              - padding: 0px 10px
+          tap_action:
+            action: call-service
+            service: climate.set_temperature
+            service_data: |
+              [[[
+                const a = states['climate.termostato_vimar'].attributes;
+                const minimo = a.min_temp ?? 5;
+                return {
+                  entity_id: 'climate.termostato_vimar',
+                  temperature: Math.max(minimo, parseFloat(a.temperature) - 0.5),
+                };
+              ]]]
+        - type: custom:button-card
+          icon: mdi:plus
+          styles:
+            card:
+              - box-shadow: none
+              - padding: 0px 10px
+          tap_action:
+            action: call-service
+            service: climate.set_temperature
+            service_data: |
+              [[[
+                const a = states['climate.termostato_vimar'].attributes;
+                const massimo = a.max_temp ?? 35;
+                return {
+                  entity_id: 'climate.termostato_vimar',
+                  temperature: Math.min(massimo, parseFloat(a.temperature) + 0.5),
+                };
+              ]]]
+  buttons:
+    card:
+      type: grid
+      columns: 5
+      square: false
+      cards:
+        - type: custom:button-card
+          entity: climate.termostato_vimar
+          show_icon: true
+          show_name: false
+          icon: |
+            [[[
+              const c = states['climate.termostato_vimar'];
+              if (c.state === 'off') return 'mdi:power';
+              const icone = {
+                home: 'mdi:refresh-auto',
+                comfort: 'mdi:hand-back-left',
+                boost: 'mdi:clock',
+              };
+              return icone[c.attributes.preset_mode] || 'mdi:help-circle-outline';
+            ]]]
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: call-service
+            service: |
+              [[[
+                const c = states['climate.termostato_vimar'];
+                const seq = ['home', 'comfort', 'off'];
+                const attuale = c.state === 'off' ? 'off' : c.attributes.preset_mode;
+                const prossimo = seq[(seq.indexOf(attuale) + 1) % seq.length];
+                return prossimo === 'off' ? 'climate.turn_off' : 'climate.set_preset_mode';
+              ]]]
+            service_data: |
+              [[[
+                const c = states['climate.termostato_vimar'];
+                const seq = ['home', 'comfort', 'off'];
+                const attuale = c.state === 'off' ? 'off' : c.attributes.preset_mode;
+                const prossimo = seq[(seq.indexOf(attuale) + 1) % seq.length];
+                return prossimo === 'off'
+                  ? { entity_id: 'climate.termostato_vimar' }
+                  : { entity_id: 'climate.termostato_vimar', preset_mode: prossimo };
+              ]]]
+        - type: custom:button-card
+          entity: climate.termostato_vimar
+          show_icon: true
+          show_name: false
+          icon: |
+            [[[
+              return entity.attributes.vimar_stagione === 'Condizionamento'
+                ? 'mdi:snowflake' : 'mdi:fire';
+            ]]]
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+            icon:
+              - color: |
+                  [[[
+                    return entity.attributes.vimar_stagione === 'Condizionamento'
+                      ? '#2196f3' : '#ff6f22';
+                  ]]]
+          tap_action:
+            action: none
+        - type: custom:button-card
+          entity: climate.termostato_vimar
+          icon: mdi:fan-speed-1
+          show_name: false
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+            icon:
+              - color: |
+                  [[[
+                    return states['climate.termostato_vimar'].attributes.fan_mode === 'low'
+                      ? '#4caf50' : 'var(--primary-text-color)';
+                  ]]]
+          tap_action:
+            action: call-service
+            service: climate.set_fan_mode
+            service_data:
+              entity_id: climate.termostato_vimar
+              fan_mode: low
+        - type: custom:button-card
+          entity: climate.termostato_vimar
+          icon: mdi:fan-speed-2
+          show_name: false
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+            icon:
+              - color: |
+                  [[[
+                    return states['climate.termostato_vimar'].attributes.fan_mode === 'medium'
+                      ? '#4caf50' : 'var(--primary-text-color)';
+                  ]]]
+          tap_action:
+            action: call-service
+            service: climate.set_fan_mode
+            service_data:
+              entity_id: climate.termostato_vimar
+              fan_mode: medium
+        - type: custom:button-card
+          entity: climate.termostato_vimar
+          icon: mdi:fan-speed-3
+          show_name: false
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+            icon:
+              - color: |
+                  [[[
+                    return states['climate.termostato_vimar'].attributes.fan_mode === 'high'
+                      ? '#4caf50' : 'var(--primary-text-color)';
+                  ]]]
+          tap_action:
+            action: call-service
+            service: climate.set_fan_mode
+            service_data:
+              entity_id: climate.termostato_vimar
+              fan_mode: high

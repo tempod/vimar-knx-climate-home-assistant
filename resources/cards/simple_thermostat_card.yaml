@@ -1,0 +1,102 @@
+type: custom:simple-thermostat
+entity: climate.termostato_vimar
+step_size: 0.5
+current_value_entity: sensor.termostato_studio_temp_attuale_knx
+layout:
+  mode:
+    names: true
+    icons: true
+    headings: false
+control:
+  _order:
+    - hvac
+    - preset
+    - fan
+  hvac:
+    'off':
+      name: Spento
+      icon: mdi:power
+    cool:
+      name: Condizionamento
+      icon: mdi:snowflake
+    heat:
+      name: Riscaldamento
+      icon: mdi:fire
+    _order:
+      - 'off'
+      - cool
+      - heat
+  preset:
+    home:
+      name: Automatico
+      icon: mdi:refresh-auto
+    comfort:
+      name: Manuale
+      icon: mdi:hand-back-left
+    boost:
+      name: A Tempo
+      icon: mdi:clock
+    _order:
+      - home
+      - comfort
+      - boost
+  fan:
+    low:
+      name: Bassa
+      icon: mdi:fan-speed-1
+    medium:
+      name: Media
+      icon: mdi:fan-speed-2
+    high:
+      name: Alta
+      icon: mdi:fan-speed-3
+    _order:
+      - low
+      - medium
+      - high
+styles: |
+  header .header__main.clickable,
+  .current--value {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .modes.hvac .mode-item.cool,
+  .modes.hvac .mode-item.heat {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .modes.preset,
+  .modes.fan,
+  .modes.hvac {
+    --st-control-icon-size: 20px;
+  }
+
+  .modes.preset .mode-item,
+  .modes.fan .mode-item,
+  .modes.hvac .mode-item {
+    min-height: 20px !important;
+    padding-block: 3px !important;
+  }
+hide_setpoint_when_off: false
+disable_setpoint_change_when_off: true
+hide:
+  setpoint_label: true
+  state: true
+card_mod:
+  style: |
+    {% set stagione = state_attr(config.entity, 'vimar_stagione') %}
+    {% set estate = stagione == 'Condizionamento' %}
+    {% set voce = 'cool' if estate else 'heat' %}
+    {% set colore = '#2196f3' if estate else '#ff6f22' %}
+    .modes.hvac .mode-item.{{ voce }},
+    .modes.hvac .mode-item.{{ voce }} .mode-icon {
+      color: {{ colore }};
+    }
+    .modes.hvac .mode-item.{{ voce }} {
+      --st-mode-active-color: {{ colore }};
+      --st-mode-active-icon-color: {{ colore }};
+      --st-mode-active-accent-color: {{ colore }};
+      --st-mode-active-background: {{ colore }}2E;
+    }

@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vimar KNX thermostat",
+        "description": "Pick the KNX entities you already declared in knx.yaml and check the select option labels.",
+        "data": {
+          "name": "Thermostat name",
+          "current_temperature_entity": "Current temperature sensor",
+          "mode_entity": "Mode select (Auto/Manual/Timed/OFF)",
+          "season_entity": "Season select (Cooling/Heating)",
+          "fan_entity": "Fan select",
+          "summer_temp_entity": "Summer setpoint (cooling)",
+          "winter_temp_entity": "Winter setpoint (heating)",
+          "auto_temp_entity": "Automatic mode setpoint",
+          "option_off": "OFF option label",
+          "option_auto": "Automatic option label",
+          "option_manual": "Manual option label",
+          "option_timed": "Timed option label",
+          "option_cooling": "Cooling option label",
+          "option_heating": "Heating option label",
+          "standard_fan_modes": "Use HA standard fan speeds (enables icons)",
+          "preset_auto_as": "Show \"Automatic\" profile as",
+          "preset_manual_as": "Show \"Manual\" profile as",
+          "preset_timed_as": "Show \"Timed\" profile as"
+        }
+      }
+    },
+    "error": {
+      "no_setpoint": "Configure at least one setpoint entity (summer, winter or automatic)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Edit Vimar KNX thermostat",
+        "data": {
+          "current_temperature_entity": "Current temperature sensor",
+          "mode_entity": "Mode select",
+          "season_entity": "Season select",
+          "fan_entity": "Fan select",
+          "summer_temp_entity": "Summer setpoint",
+          "winter_temp_entity": "Winter setpoint",
+          "auto_temp_entity": "Automatic mode setpoint",
+          "option_off": "OFF option label",
+          "option_auto": "Automatic option label",
+          "option_manual": "Manual option label",
+          "option_timed": "Timed option label",
+          "option_cooling": "Cooling option label",
+          "option_heating": "Heating option label",
+          "standard_fan_modes": "Use HA standard fan speeds (enables icons)",
+          "preset_auto_as": "Show \"Automatic\" profile as",
+          "preset_manual_as": "Show \"Manual\" profile as",
+          "preset_timed_as": "Show \"Timed\" profile as"
+        }
+      }
+    },
+    "error": {
+      "no_setpoint": "Configure at least one setpoint entity."
+    }
+  },
+  "selector": {
+    "standard_preset": {
+      "options": {
+        "keep_original": "Original Vimar label (no icon)",
+        "none": "None",
+        "eco": "Eco",
+        "away": "Away",
+        "boost": "Boost",
+        "comfort": "Comfort",
+        "home": "Home",
+        "sleep": "Sleep",
+        "activity": "Activity"
+      }
+    }
+  }
+}

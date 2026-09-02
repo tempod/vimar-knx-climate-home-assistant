@@ -1,0 +1,12 @@
+{
+  "domain": "vimar_knx_climate",
+  "name": "Vimar KNX Climate",
+  "codeowners": ["@TUO_UTENTE_GITHUB"],
+  "config_flow": true,
+  "documentation": "https://github.com/TUO_UTENTE_GITHUB/vimar-knx-climate",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/TUO_UTENTE_GITHUB/vimar-knx-climate/issues",
+  "requirements": [],
+  "version": "0.3.0"
+}

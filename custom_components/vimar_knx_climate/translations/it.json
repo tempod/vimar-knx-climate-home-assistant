@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Termostato Vimar KNX",
+        "description": "Seleziona le entità KNX già definite in knx.yaml e verifica le etichette delle opzioni dei select.",
+        "data": {
+          "name": "Nome del termostato",
+          "current_temperature_entity": "Sensore temperatura attuale",
+          "mode_entity": "Select modalità (Automatico/Manuale/A Tempo/OFF)",
+          "season_entity": "Select stagione (Condizionamento/Riscaldamento)",
+          "fan_entity": "Select ventola",
+          "summer_temp_entity": "Setpoint estate (raffrescamento)",
+          "winter_temp_entity": "Setpoint inverno (riscaldamento)",
+          "auto_temp_entity": "Setpoint modalità automatica",
+          "option_off": "Etichetta opzione OFF",
+          "option_auto": "Etichetta opzione Automatico",
+          "option_manual": "Etichetta opzione Manuale",
+          "option_timed": "Etichetta opzione A Tempo",
+          "option_cooling": "Etichetta opzione Condizionamento",
+          "option_heating": "Etichetta opzione Riscaldamento",
+          "standard_fan_modes": "Usa le velocità ventola standard di HA (abilita le icone)",
+          "preset_auto_as": "Profilo \"Automatico\" mostrato come",
+          "preset_manual_as": "Profilo \"Manuale\" mostrato come",
+          "preset_timed_as": "Profilo \"A Tempo\" mostrato come"
+        }
+      }
+    },
+    "error": {
+      "no_setpoint": "Configura almeno un'entità di setpoint (estate, inverno o automatico)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Modifica termostato Vimar KNX",
+        "data": {
+          "current_temperature_entity": "Sensore temperatura attuale",
+          "mode_entity": "Select modalità",
+          "season_entity": "Select stagione",
+          "fan_entity": "Select ventola",
+          "summer_temp_entity": "Setpoint estate",
+          "winter_temp_entity": "Setpoint inverno",
+          "auto_temp_entity": "Setpoint modalità automatica",
+          "option_off": "Etichetta opzione OFF",
+          "option_auto": "Etichetta opzione Automatico",
+          "option_manual": "Etichetta opzione Manuale",
+          "option_timed": "Etichetta opzione A Tempo",
+          "option_cooling": "Etichetta opzione Condizionamento",
+          "option_heating": "Etichetta opzione Riscaldamento",
+          "standard_fan_modes": "Usa le velocità ventola standard di HA (abilita le icone)",
+          "preset_auto_as": "Profilo \"Automatico\" mostrato come",
+          "preset_manual_as": "Profilo \"Manuale\" mostrato come",
+          "preset_timed_as": "Profilo \"A Tempo\" mostrato come"
+        }
+      }
+    },
+    "error": {
+      "no_setpoint": "Configura almeno un'entità di setpoint."
+    }
+  },
+  "selector": {
+    "standard_preset": {
+      "options": {
+        "keep_original": "Etichetta Vimar originale (nessuna icona)",
+        "none": "Nessuno",
+        "eco": "Eco",
+        "away": "Fuori casa",
+        "boost": "Boost",
+        "comfort": "Comfort",
+        "home": "Casa",
+        "sleep": "Notte",
+        "activity": "Attività"
+      }
+    }
+  }
+}

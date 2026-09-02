@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 512" width="1220" height="512">
+  <g>
+  <defs>
+    <linearGradient id="dplate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E6ECF2"/>
+    </linearGradient>
+    <linearGradient id="darc" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#52B9FF"/>
+      <stop offset="1" stop-color="#FF8A45"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464"
+        rx="112" fill="url(#dplate)"/>
+  <rect x="38" y="38"
+        width="436" height="436"
+        rx="98" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="4"/>
+
+  <path d="M 161.25 326.75 A 134 134 0 1 1 350.75 326.75" fill="none" stroke="#C6D1DE"
+        stroke-width="30" stroke-linecap="round"/>
+  <path d="M 161.25 326.75 A 134 134 0 1 1 355.58 142.34" fill="none" stroke="url(#darc)"
+        stroke-width="30" stroke-linecap="round"/>
+  <circle cx="355.58" cy="142.34" r="19" fill="#1B2430"
+          stroke="#FFFFFF" stroke-width="5"/>
+
+  <g fill="#2A3646" opacity="1">
+    <rect x="242" y="154" width="28" height="108" rx="14"/>
+    <circle cx="256" cy="280" r="35"/>
+  </g>
+  <g fill="#FF6A28">
+    <rect x="249" y="190" width="14" height="82" rx="7"/>
+    <circle cx="256" cy="280" r="22"/>
+  </g>
+
+  <line x1="148" y1="408" x2="364" y2="408"
+        stroke="#12A05B" stroke-width="13" stroke-linecap="round"/>
+  <g fill="#12A05B">
+    <circle cx="148" cy="408" r="23"/>
+    <circle cx="256" cy="408" r="23"/>
+    <circle cx="364" cy="408" r="23"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="148" cy="408" r="8"/>
+    <circle cx="256" cy="408" r="8"/>
+    <circle cx="364" cy="408" r="8"/>
+  </g>
+  </g>
+  <text x="556" y="238" font-family="Carlito, DejaVu Sans, sans-serif"
+        font-size="104" font-weight="700" fill="#F2F5F8">Vimar KNX</text>
+  <text x="556" y="350" font-family="Carlito, DejaVu Sans, sans-serif"
+        font-size="104" font-weight="300" fill="#F2F5F8" opacity="0.82">Climate</text>
+</svg>

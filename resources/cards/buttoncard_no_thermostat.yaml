@@ -1,0 +1,253 @@
+type: custom:button-card
+entity: sensor.termostato_cucina_temp_attuale_knx
+name: Termostato Cucina
+show_state: true
+color: auto
+state_display: |
+  [[[
+    const mode = states['select.termostato_cucina_modalita_knx'].state;
+    if (mode == 'OFF') {
+      return 'OFF';
+    }
+    
+    let set_temp_display = '';
+    if (mode == 'Automatico' || mode == 'A Tempo') {
+      set_temp_display = `Impostata ${states['number.termostato_cucina_temp_auto_knx'].state}°C`;
+    } else {
+      const season = states['select.termostato_cucina_stagione_knx'].state;
+      if (season == 'Condizionamento') {
+        set_temp_display = `Impostata ${states['number.termostato_cucina_temp_estate_knx'].state}°C`;
+      } else if (season == 'Riscaldamento') {
+        set_temp_display = `Impostata ${states['number.termostato_cucina_temp_inverno_knx'].state}°C`;
+      } else {
+        set_temp_display = 'N/D';
+      }
+    }
+    return `${mode} | ${set_temp_display}`;
+  ]]]
+styles:
+  card:
+    - padding: 10px
+  grid:
+    - grid-template-areas: '"i n temp" "i s controls" "buttons buttons buttons"'
+    - grid-template-columns: 0.5fr 2fr 1.0fr
+    - grid-template-rows: min-content min-content auto
+  name:
+    - justify-self: start
+    - font-size: 13px
+  state:
+    - justify-self: start
+    - font-size: 13px
+  custom_fields:
+    temp:
+      - align-self: start
+      - justify-self: end
+      - font-size: 20px
+    controls:
+      - align-self: center
+      - justify-self: end
+      - display: flex
+    buttons:
+      - padding-top: 10px
+custom_fields:
+  temp: |
+    [[[
+      return `${states['sensor.termostato_cucina_temp_attuale_knx'].state}°C`;
+    ]]]
+  controls:
+    card:
+      type: horizontal-stack
+      cards:
+        - type: custom:button-card
+          icon: mdi:minus
+          styles:
+            card:
+              - box-shadow: none
+              - padding: 0px 10px
+          tap_action:
+            action: call-service
+            service: number.set_value
+            service_data:
+              entity_id: |
+                [[[
+                  const mode = states['select.termostato_cucina_modalita_knx'].state;
+                  if (mode == 'Automatico' || mode == 'A Tempo') {
+                    return 'number.termostato_cucina_temp_auto_knx';
+                  } else {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                      return 'number.termostato_cucina_temp_estate_knx';
+                    } else {
+                      return 'number.termostato_cucina_temp_inverno_knx';
+                    }
+                  }
+                ]]]
+              value: |
+                [[[
+                  const mode = states['select.termostato_cucina_modalita_knx'].state;
+                  let entity_id = '';
+                  if (mode == 'Automatico' || mode == 'A Tempo') {
+                    entity_id = 'number.termostato_cucina_temp_auto_knx';
+                  } else {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                      entity_id = 'number.termostato_cucina_temp_estate_knx';
+                    } else {
+                      entity_id = 'number.termostato_cucina_temp_inverno_knx';
+                    }
+                  }
+                  return parseFloat(states[entity_id].state) - 0.5;
+                ]]]
+        - type: custom:button-card
+          icon: mdi:plus
+          styles:
+            card:
+              - box-shadow: none
+              - padding: 0px 10px
+          tap_action:
+            action: call-service
+            service: number.set_value
+            service_data:
+              entity_id: |
+                [[[
+                  const mode = states['select.termostato_cucina_modalita_knx'].state;
+                  if (mode == 'Automatico' || mode == 'A Tempo') {
+                    return 'number.termostato_cucina_temp_auto_knx';
+                  } else {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                      return 'number.termostato_cucina_temp_estate_knx';
+                    } else {
+                      return 'number.termostato_cucina_temp_inverno_knx';
+                    }
+                  }
+                ]]]
+              value: |
+                [[[
+                  const mode = states['select.termostato_cucina_modalita_knx'].state;
+                  let entity_id = '';
+                  if (mode == 'Automatico' || mode == 'A Tempo') {
+                    entity_id = 'number.termostato_cucina_temp_auto_knx';
+                  } else {
+                    if (states['select.termostato_cucina_stagione_knx'].state == 'Condizionamento') {
+                      entity_id = 'number.termostato_cucina_temp_estate_knx';
+                    } else {
+                      entity_id = 'number.termostato_cucina_temp_inverno_knx';
+                    }
+                  }
+                  return parseFloat(states[entity_id].state) + 0.5;
+                ]]]
+  buttons:
+    card:
+      type: grid
+      columns: 5
+      square: false
+      cards:
+        - type: custom:button-card
+          entity: select.termostato_cucina_modalita_knx
+          show_icon: true
+          show_name: false
+          state:
+            - value: Automatico
+              icon: mdi:refresh-auto
+            - value: Manuale
+              icon: mdi:hand-back-left
+            - value: 'OFF'
+              icon: mdi:power
+            - value: A Tempo
+              icon: mdi:clock
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: call-service
+            service: select.select_option
+            service_data:
+              entity_id: select.termostato_cucina_modalita_knx
+              option: |
+                [[[
+                  const order = ['Automatico', 'Manuale', 'OFF'];
+                  const current = states['select.termostato_cucina_modalita_knx'].state;
+                  const currentIndex = order.indexOf(current);
+                  let nextIndex = currentIndex + 1;
+                  if (nextIndex >= order.length) {
+                    nextIndex = 0;
+                  }
+                  return order[nextIndex];
+                ]]]
+        - type: custom:button-card
+          entity: select.termostato_cucina_stagione_knx
+          show_icon: true
+          show_name: false
+          state:
+            - value: Condizionamento
+              icon: mdi:snowflake
+              styles:
+                icon:
+                  - color: '#2196f3'
+            - value: Riscaldamento
+              icon: mdi:fire
+              styles:
+                icon:
+                  - color: '#ff6f22'
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: none
+        - type: custom:button-card
+          entity: select.termostato_cucina_ventola_knx
+          icon: mdi:fan-speed-1
+          show_name: false
+          state:
+            - value: low
+              styles:
+                icon:
+                  - color: '#4caf50'
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: call-service
+            service: select.select_option
+            service_data:
+              entity_id: select.termostato_cucina_ventola_knx
+              option: low
+        - type: custom:button-card
+          entity: select.termostato_cucina_ventola_knx
+          icon: mdi:fan-speed-2
+          show_name: false
+          state:
+            - value: med
+              styles:
+                icon:
+                  - color: '#4caf50'
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: call-service
+            service: select.select_option
+            service_data:
+              entity_id: select.termostato_cucina_ventola_knx
+              option: med
+        - type: custom:button-card
+          entity: select.termostato_cucina_ventola_knx
+          icon: mdi:fan-speed-3
+          show_name: false
+          state:
+            - value: high
+              styles:
+                icon:
+                  - color: '#4caf50'
+          styles:
+            card:
+              - height: 35px
+              - background-color: rgba(var(--rgb-primary-text-color), 0.05)
+          tap_action:
+            action: call-service
+            service: select.select_option
+            service_data:
+              entity_id: select.termostato_cucina_ventola_knx
+              option: high
