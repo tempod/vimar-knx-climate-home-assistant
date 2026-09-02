@@ -7,7 +7,7 @@ tap_action:
   action: none
 hold_action:
   action: more-info
-  entity: sensor.termostato_studio_temp_attuale_knx
+  entity: sensor.termostato_vimar_temp_attuale_knx
 state_display: |
   [[[
     const c = states['climate.termostato_vimar'];
