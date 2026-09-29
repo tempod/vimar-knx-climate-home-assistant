@@ -4,6 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
 [![HACS](https://img.shields.io/badge/HACS-repository%20personalizzato-41BDF5?style=flat-square&logo=homeassistantcommunitystore&logoColor=white)](https://hacs.xyz)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.11%2B-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io)
+[![Download](https://img.shields.io/github/downloads/tempod/vimar-knx-climate-home-assistant/total?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/releases)
 [![Licenza](https://img.shields.io/github/license/tempod/vimar-knx-climate-home-assistant?style=flat-square)](LICENSE)
 [![Issue](https://img.shields.io/github/issues/tempod/vimar-knx-climate-home-assistant?style=flat-square)](https://github.com/tempod/vimar-knx-climate-home-assistant/issues)
 
@@ -276,6 +277,11 @@ Da **Strumenti per sviluppatori → Stati** controlla anche l'attributo
 
 Uno stato ancora `unknown` invece è normale prima che il termostato risponda
 alla prima lettura sul bus, e non nasconde più i comandi.
+
+Il controllo viene eseguito quando Home Assistant ha finito di avviarsi, non
+durante il setup della piattaforma: a quel punto le entità KNX esistono già,
+quindi un warning qui segnala un problema reale e non un ordine di caricamento
+sfortunato.
 
 ## Card di esempio
 

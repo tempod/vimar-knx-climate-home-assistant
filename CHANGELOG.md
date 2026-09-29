@@ -3,6 +3,20 @@
 Il formato segue [Keep a Changelog](https://keepachangelog.com/it/1.1.0/) e il
 versionamento segue [SemVer](https://semver.org/lang/it/).
 
+## [1.0.2] - 2026-09-29
+
+### Corretto
+
+- La diagnostica all'avvio segnalava come inesistenti entità sorgente che in
+  realtà erano configurate correttamente. Il controllo girava durante il setup
+  della piattaforma, quando le entità KNX possono non essere ancora registrate
+  nello state machine, e con più termostati produceva una raffica di warning
+  in pochi millisecondi. Ora attende `EVENT_HOMEASSISTANT_STARTED`, oppure
+  parte subito se Home Assistant è già avviato, come dopo un ricaricamento.
+- Per lo stesso motivo il profilo da ripristinare alla riaccensione veniva
+  letto troppo presto e restava sul valore predefinito. Anche quella lettura
+  è stata spostata ad avvio completato.
+
 ## [1.0.1] - 2026-09-02
 
 ### Modificato
@@ -77,5 +91,6 @@ l'integrazione KNX già configurata.
 - `hvac_action` non è esposto: richiederebbe un indirizzo di gruppo di stato
   del relè o della valvola.
 
+[1.0.2]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.2
 [1.0.1]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.1
 [1.0.0]: https://github.com/tempod/vimar-knx-climate-home-assistant/releases/tag/v1.0.0
