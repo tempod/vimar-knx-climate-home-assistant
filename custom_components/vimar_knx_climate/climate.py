@@ -22,6 +22,7 @@ from homeassistant.core import Event, HomeAssistant, State, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
+from homeassistant.helpers.start import async_at_started
 
 from .const import (
     ATTR_ACTIVE_SETPOINT,
@@ -225,8 +226,20 @@ class VimarKnxClimate(ClimateEntity):
                 self.hass, sources, self._async_source_changed
             )
         )
+
+        # La diagnostica aspetta che Home Assistant abbia finito di avviarsi.
+        # Durante il setup della piattaforma le entità KNX possono non essere
+        # ancora nello state machine, e controllarle lì produrrebbe warning
+        # su entità che in realtà esistono. Se HA è già avviato, per esempio
+        # dopo un ricaricamento dell'integrazione, la callback parte subito.
+        self.async_on_remove(async_at_started(self.hass, self._async_hass_started))
+
+    @callback
+    def _async_hass_started(self, _hass: HomeAssistant) -> None:
+        """Allinea lo stato interno una volta che tutte le sorgenti esistono."""
         self._remember_active_mode()
         self._log_source_diagnostics()
+        self.async_write_ha_state()
 
     @callback
     def _log_source_diagnostics(self) -> None:
